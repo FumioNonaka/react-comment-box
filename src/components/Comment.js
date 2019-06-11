@@ -1,4 +1,5 @@
 import React from 'react';
+import marked from 'marked';
 
 const Comment = (props) => {
   return (
@@ -6,9 +7,14 @@ const Comment = (props) => {
       <h2 className="CommentAuthor">
       {props.author}
       </h2>
-      {props.children}
+      <span dangerouslySetInnerHTML={rawMarkup(props.children.toString())} />
     </div>
   );
 };
+
+const rawMarkup = (markup) => {
+  const rawMarkup = marked(markup);
+  return { __html: rawMarkup };
+}
 
 export default Comment;
