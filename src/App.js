@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentList from './components/CommentList';
 import CommentForm from './components/CommentForm';
+import CommentStorage from './components/CommentStorage';
 import './App.css';
 
 class App extends React.Component {
@@ -10,16 +11,7 @@ class App extends React.Component {
     this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
   }
   async componentDidMount() {
-    const url = 'comments.json';
-    try {
-      const jsonData = 
-        await (
-          await fetch(url)
-        ).json();
-      this.setState({data: jsonData});
-    } catch (error) {
-      console.error('エラー:', error);
-    }
+    this.setState({data: await CommentStorage.fetch()});
   }
   handleCommentSubmit(comment) {
     console.log(comment);  // 確認用
