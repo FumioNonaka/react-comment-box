@@ -7,7 +7,10 @@ const Comment = (props) => {
       <h2 className="CommentAuthor">
       {props.author}
       </h2>
-      <span dangerouslySetInnerHTML={rawMarkup(props.children.toString())} />
+      <div className="CommentText">
+        <span dangerouslySetInnerHTML={rawMarkup(props.children.toString())} />
+        <button type="button" onClick={() => handleClick(props)}>削除</button>
+      </div>
     </div>
   );
 };
@@ -15,6 +18,13 @@ const Comment = (props) => {
 const rawMarkup = (markup) => {
   const rawMarkup = marked(markup);
   return { __html: rawMarkup };
-}
+};
+
+const handleClick = (props) => {
+  props.onRemoveComment({
+    author: props.author,
+    text: props.children.toString()
+  });
+};
 
 export default Comment;

@@ -2,18 +2,20 @@ import React from 'react';
 import Comment from './Comment';
 
 const CommentList = (props) => {
-  const commentNodes = props.data.map((comment, id) =>
-  (
-    <Comment author={comment.author} key={id}>
+  const commentNodes = props.data.map((comment, id) => (
+    <Comment author={comment.author} key={id}
+      onRemoveComment={(comment) => removeComment(props, comment)}>
     {comment.text}
     </Comment>
-  )
-);
-return (
+  ));
+  return (
     <div className="CommentList">
       {commentNodes}
     </div>
   );
 };
+
+const removeComment = (props, comment) =>
+  props.onRemoveComment(comment);
 
 export default CommentList;
