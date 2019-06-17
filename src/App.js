@@ -19,9 +19,9 @@ class App extends React.Component {
     this.setState({data: data});
     CommentStorage.save(data);
   }
-  removeComment(removing) {
-    const data = this.state.data.filter(comment =>
-      (comment.author !== removing.author) || (comment.text !== removing.text)
+  removeComment(id) {
+    const data = this.state.data.filter((comment) =>
+      comment.id !== id
     );
     this.setState({data: data});
     CommentStorage.save(data);

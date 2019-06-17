@@ -4,6 +4,7 @@ import Comment from './Comment';
 const CommentList = (props) => {
   const commentNodes = props.data.map((comment) => (
     <Comment
+      id={comment.id}
       author={comment.author}
       key={comment.id} 
       onRemoveComment={(comment) => removeComment(props, comment)}
@@ -18,7 +19,7 @@ const CommentList = (props) => {
   );
 };
 
-const removeComment = (props, comment) =>
-  props.onRemoveComment(comment);
+const removeComment = (props, id) =>
+  props.onRemoveComment(id);
 
 export default CommentList;
