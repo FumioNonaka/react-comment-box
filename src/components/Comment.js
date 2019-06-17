@@ -21,10 +21,7 @@ const rawMarkup = (markup) => {
 };
 
 const handleClick = (props) => {
-  props.onRemoveComment({
-    author: props.author,
-    text: props.children.toString()
-  });
+  props.onRemoveComment(props.id);
 };
 
 export default Comment;
